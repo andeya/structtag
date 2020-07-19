@@ -1,4 +1,4 @@
-# structtag [![GoDoc](http://img.shields.io/badge/go-documentation-blue.svg?style=flat-square)](http://godoc.org/github.com/fatih/structtag) [![Build Status](https://travis-ci.org/fatih/structtag.svg?branch=master)](https://travis-ci.org/fatih/structtag)
+# structtag [![GoDoc](http://img.shields.io/badge/go-documentation-blue.svg?style=flat-square)](http://godoc.org/github.com/henrylee2cn/structtag) [![Build Status](https://travis-ci.org/henrylee2cn/structtag.svg?branch=master)](https://travis-ci.org/henrylee2cn/structtag)
 
 structtag provides an easy way of parsing and manipulating struct tag fields.
 Please vendor the library as it might change in future versions.
@@ -6,7 +6,7 @@ Please vendor the library as it might change in future versions.
 # Install
 
 ```bash
-go get github.com/fatih/structtag
+go get github.com/henrylee2cn/structtag
 ```
 
 # Example
@@ -19,7 +19,7 @@ import (
 	"reflect"
 	"sort"
 
-	"github.com/fatih/structtag"
+	"github.com/henrylee2cn/structtag"
 )
 
 func main() {

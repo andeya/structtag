@@ -3,10 +3,12 @@ package structtag
 import (
 	"reflect"
 	"sort"
+	"strings"
 	"testing"
 )
 
 func TestParse(t *testing.T) {
+
 	test := []struct {
 		name    string
 		tag     string
@@ -151,6 +153,27 @@ func TestParse(t *testing.T) {
 				},
 			},
 		},
+		{
+			name: "tag with quoted name",
+			tag:  `json:"foo,bar:\"baz\""`,
+			exp: []*Tag{
+				{
+					Key:     "json",
+					Name:    "foo",
+					Options: []string{`bar:"baz"`},
+				},
+			},
+		},
+		{
+			name: "tag with trailing space",
+			tag:  `json:"foo" `,
+			exp: []*Tag{
+				{
+					Key:  "json",
+					Name: "foo",
+				},
+			},
+		},
 	}
 
 	for _, ts := range test {
@@ -167,9 +190,13 @@ func TestParse(t *testing.T) {
 			}
 
 			got := tags.Tags()
-
 			if !reflect.DeepEqual(ts.exp, got) {
 				t.Errorf("parse\n\twant: %#v\n\tgot : %#v", ts.exp, got)
+			}
+
+			trimmedInput := strings.TrimSpace(ts.tag)
+			if trimmedInput != tags.String() {
+				t.Errorf("parse string\n\twant: %#v\n\tgot : %#v", trimmedInput, tags.String())
 			}
 		})
 	}
